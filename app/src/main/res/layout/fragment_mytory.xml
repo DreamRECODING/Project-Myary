@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
+    android:background="@color/white"
     tools:context=".Mytory">
 
     <!-- TODO: Update blank fragment layout -->
@@ -11,9 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:fontFamily="@font/bm2"
+        android:fontFamily="@font/bm3"
         android:text="Mytory Fragment"
-        android:textColor="@color/white"
-        android:textSize="27dp" />
+        android:textColor="@color/black"
+        android:textSize="27dp"
+        android:textStyle="bold" />
 
 </FrameLayout>
