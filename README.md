@@ -10,3 +10,4 @@ Object-oriented Programming Project!!!
 |  
 | - Mypler (Considering Realization)  
 | - Mycon  (Considering Realization)
+![splash](app/src/main/res/drawale/splash.png)
