@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Mytory"
+        android:id="@+id/mytory"
+        android:icon="@drawable/ic_baseline_book_24"/>
+    <item android:title="Mychive"
+        android:id="@+id/mychive"
+        android:icon="@drawable/ic_baseline_edit_calendar_24"/>
+    <item android:title="Task Chaser"
+        android:id="@+id/taskchaser"
+        android:icon="@drawable/ic_baseline_alarm_on_24"/>
+</menu>
