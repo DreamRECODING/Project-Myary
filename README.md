@@ -4,8 +4,8 @@ New Myary Project👍
 Object-oriented Programming Project!!!
 
 # Myary's Services  
-| - Mytory      😎  
-| - Mychive     📆  
+| - Mytory 😎  
+| - Mychive 📆  
 | - Task Chaser ⏰  
 |  
 | - Mypler (Considering Realization)  
