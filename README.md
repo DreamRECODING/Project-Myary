@@ -9,5 +9,5 @@ Object-oriented Programming Project!!!
 | - Task Chaser  
 |  
 | - Mypler (Considering Realization)  
-| - Mycon  (Considering Realization)
+| - Mycon  (Considering Realization)  
 ![newsplash](newsplash.png)
