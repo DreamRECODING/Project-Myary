@@ -16,14 +16,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import android.view.ViewGroup
 import android.view.LayoutInflater
+import android.view.View.OnClickListener
 import com.example.myary.databinding.FragmentMychiveBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 
 
 class Mychive : Fragment() {
 
-    private lateinit var fname: String
-    private lateinit var str: String
-    
+    //private val database: FirebaseDatabase = FirebaseDatabase.getInstance() //firebase database 연동
+    //private val databaseReference: DatabaseReference = database.getReference("todo")
+
+    lateinit var fname: String  //날짜로 file name
+    lateinit var str: String    //file 내용이 될 변수
+
     private lateinit var binding: FragmentMychiveBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -36,7 +45,7 @@ class Mychive : Fragment() {
     @SuppressLint("MissingInflatedId")
     override fun onStart() {
         super.onStart()
-       
+
         binding.title.text = "Mychive"
 
         binding.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth -> //달력 날짜 선택
@@ -59,15 +68,31 @@ class Mychive : Fragment() {
             binding.updateBtn.visibility = View.VISIBLE
             binding.deleteBtn.visibility = View.VISIBLE
             str = binding.contextEditText.text.toString() //str 변수에 EditText 내용을 string으로 저장
-            binding.diaryContent.text = str
+            binding.diaryContent.text = str //diaryContent textView에 str이 들어감
             binding.diaryContent.visibility = View.VISIBLE  //일정 내용 보임
+
+            val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+            val myRef: DatabaseReference = database.getReference("todo")
+
+            myRef.setValue(binding.contextEditText.text.toString())
+
+            /*
+            fun onClick(view: View) {
+
+                //addTodo(fname, str)
+            }
+
+             */
+
         }
+
     }
 
     // 달력 내용 조회, 수정
     fun checkDay(cYear: Int, cMonth: Int, cDay: Int) {
         //저장할 파일 이름설정
-        fname = "" + cYear + "-" + (cMonth + 1) + "" + "-" + cDay + ".txt" //저장할 파일 이름
+        fname = "" + cYear + "-" + (cMonth + 1) + "" + "-" + cDay + ".txt" //저장할 파일 이름,
+        // 2022-01-01.txt 처럼
 
         var fileInputStream: FileInputStream //파일 내용 읽어오기 fileInputStream
         try {
@@ -123,7 +148,7 @@ class Mychive : Fragment() {
     // 달력 내용 제거 메소드
     @SuppressLint("WrongConstant")  //Ensures that when parameter in a method only allows a specific set of
     //constants, calls obey those rules.
-    fun removeDiary(readDay: String?) {
+    fun removeDiary(readDay: String?) {     //파라미터는 날짜를 읽은 것. fname이 들어가게
         var fileOutputStream: FileOutputStream
         try {
             fileOutputStream = requireActivity().openFileOutput(readDay, MODE_NO_LOCALIZED_COLLATORS)
@@ -138,7 +163,7 @@ class Mychive : Fragment() {
 
     // 달력 내용 추가 메소드
     @SuppressLint("WrongConstant")
-    fun saveDiary(readDay: String?) {
+    fun saveDiary(readDay: String?) {   //파라미터는 날짜를 읽은 것. fname이 들어가게
         var fileOutputStream: FileOutputStream //파일 생성
         try {
             fileOutputStream = requireActivity().openFileOutput(readDay, MODE_NO_LOCALIZED_COLLATORS)
@@ -149,4 +174,16 @@ class Mychive : Fragment() {
             e.printStackTrace()
         }
     }
+
+    /*
+    //데이터를 파이어베이스 realtime database로 넘기는 함수
+    fun addTodo(date: String?, schedule: String?) {
+
+        val todo = todo(date, schedule)
+        if (date != null) {
+            databaseReference.child("todo").child(date).setValue(schedule)
+        }
+    }
+
+     */
 }
